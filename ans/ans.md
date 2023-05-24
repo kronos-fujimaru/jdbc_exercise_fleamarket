@@ -188,7 +188,7 @@ public class UserMain {
     // データベース接続情報
     private final static String URL = "jdbc:mysql://localhost:3306/fleamarket?allowPublicKeyRetrieval=true&useSSL=false";
     private final static String USER = "root";
-    private final static String PASSWORD = "admin"; // TODO パスワードの設定
+    private final static String PASSWORD = ""; // TODO パスワードの設定
 
     /**
      * ログイン
@@ -302,7 +302,7 @@ public class UserMain {
          *  商品名  : 入力した商品名
          *  価格    : 入力した価格
          *  状態    : 入力した状態
-         *  出品者ID: 任意のユーザID（固定）
+         *  出品者ID: ログインユーザのID
          */
         Item item = new Item();
         item.setName(name);
@@ -414,12 +414,6 @@ public class UserMain {
             Item oldItem = itemDao.findById(id);
             if (oldItem == null) {
                 System.out.println("\r\n指定したIDの商品は見つかりません。");
-                System.out.println();
-                return;
-            }
-    
-            if (oldItem.getSellerId() != user.getId()) {
-                System.out.println("\r\n指定したIDの商品は他者が出品した商品のため\r\n削除できません。");
                 System.out.println();
                 return;
             }
